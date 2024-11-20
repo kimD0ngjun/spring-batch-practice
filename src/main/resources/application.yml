@@ -1,3 +1,8 @@
 spring:
   application:
     name: batch-practice
+
+  # ?? ?? ?? ??
+  batch:
+    job:
+      enabled: false
