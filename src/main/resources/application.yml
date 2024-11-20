@@ -3,23 +3,24 @@ spring:
     name: batch-practice
 
   batch:
-    # ?? ?? ?? ??
+    # prevent auto batch when app is initialized
+    # to use endpoint or scheduling
     job:
       enabled: false
 
-    # ????? ??? ?? ??
+    # meta data table for managing batch job
     jdbc:
       initialize-schema: always
-      schema: classpath:org/springframework/batch/core/schema-mysql.sql  # ?? ????? batch ??? core? ????? ?
+      schema: classpath:org/springframework/batch/core/schema-mysql.sql  # position: external library
 
-  # ????? db ??
+  # meta data DB info(like record)
   datasource-meta:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://localhost:3307/meta_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: user
     password: password
 
-  # ????? db ??
+  # process data DB info
   datasource-data:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://localhost:3308/data_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
