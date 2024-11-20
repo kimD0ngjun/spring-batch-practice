@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 public class MetaDBConfig {
 
-    @Primary
+    @Primary  // @Primary 설정한 테이블에 테이블을 자동으로 메타데이터 테이블 생성
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource-meta")
     public DataSource metaSource() {
