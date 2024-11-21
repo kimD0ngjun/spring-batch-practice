@@ -1,4 +1,4 @@
-package com.example.batchpractice.batch;
+package com.example.batchpractice.batch.jpa;
 
 import com.example.batchpractice.entity.AfterEntity;
 import com.example.batchpractice.entity.BeforeEntity;
