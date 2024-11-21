@@ -1,4 +1,4 @@
-package com.example.batchpractice.repository;
+package com.example.batchpractice.repository.jdbc;
 
 import com.example.batchpractice.entity.AfterEntity;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.batchpractice.repository;
+package com.example.batchpractice.repository.jpa;
 
 import com.example.batchpractice.entity.WinEntity;
 import org.springframework.data.domain.Page;

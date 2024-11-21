@@ -2,8 +2,8 @@ package com.example.batchpractice.batch.jpa;
 
 import com.example.batchpractice.entity.AfterEntity;
 import com.example.batchpractice.entity.BeforeEntity;
-import com.example.batchpractice.repository.AfterJpaRepository;
-import com.example.batchpractice.repository.BeforeJpaRepository;
+import com.example.batchpractice.repository.jpa.AfterJpaRepository;
+import com.example.batchpractice.repository.jpa.BeforeJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

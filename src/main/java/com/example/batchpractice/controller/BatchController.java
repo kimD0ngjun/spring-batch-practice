@@ -1,6 +1,6 @@
 package com.example.batchpractice.controller;
 
-import com.example.batchpractice.repository.BeforeJpaRepository;
+import com.example.batchpractice.repository.jpa.BeforeJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;

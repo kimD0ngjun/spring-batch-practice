@@ -1,4 +1,4 @@
-package com.example.batchpractice.repository;
+package com.example.batchpractice.repository.jpa;
 
 import com.example.batchpractice.entity.AfterEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

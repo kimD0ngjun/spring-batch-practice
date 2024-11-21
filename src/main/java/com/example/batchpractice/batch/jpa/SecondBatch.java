@@ -1,7 +1,7 @@
 package com.example.batchpractice.batch.jpa;
 
 import com.example.batchpractice.entity.WinEntity;
-import com.example.batchpractice.repository.WinJpaRepository;
+import com.example.batchpractice.repository.jpa.WinJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
