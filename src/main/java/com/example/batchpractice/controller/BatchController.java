@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequiredArgsConstructor
-public class FirstBatchController {
+public class BatchController {
 
     // job 실행을 위한 의존성들
     private final JobLauncher jobLauncher;
@@ -39,8 +39,17 @@ public class FirstBatchController {
         // JobLauncher 에서 Job 실행시 JobParameter 를 주는 이유
         // : 실행한 작업에 대한 일자, 순번등을 부여해 동일한 일자에 대한 작업의 수행 여부를 확인하여 중복 실행 및 미실행을 예방
         jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
-
         return new ResponseEntity<>("first batch complete", HttpStatus.OK);
     }
 
+    @GetMapping("/second")
+    public ResponseEntity<?> secondApi(@RequestParam("value") String value) throws Exception {
+
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addString("data", value)
+                .toJobParameters();
+
+        jobLauncher.run(jobRegistry.getJob("secondJob"), jobParameters);
+        return new ResponseEntity<>("second batch complete", HttpStatus.OK);
+    }
 }

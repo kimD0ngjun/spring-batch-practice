@@ -69,7 +69,7 @@ public class SecondBatch {
                 .name("winReader")
                 .pageSize(10)
                 .methodName("findByWinGreaterThanEqual")
-                .arguments(Collections.singletonList(10L))
+                .arguments(Collections.singletonList(10L))  // WinEntity 의 win 필드가 10 이상인 데이터들 조회
                 .repository(winRepository)
                 .sorts(Map.of("id", Sort.Direction.ASC))
                 .build();
