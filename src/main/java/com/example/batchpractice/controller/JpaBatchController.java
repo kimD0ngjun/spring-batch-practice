@@ -39,4 +39,15 @@ public class JpaBatchController {
         jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
         return new ResponseEntity<>("first batch complete for JPA", HttpStatus.OK);
     }
+
+    @GetMapping("/second")
+    public ResponseEntity<?> secondApi(@RequestParam("value") String value) throws Exception {
+
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addString("data", value)
+                .toJobParameters();
+
+        jobLauncher.run(jobRegistry.getJob("secondJob"), jobParameters);
+        return new ResponseEntity<>("second batch complete for JPA", HttpStatus.OK);
+    }
 }
