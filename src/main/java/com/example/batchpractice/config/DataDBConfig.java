@@ -32,6 +32,10 @@ public class DataDBConfig {
         return DataSourceBuilder.create().build();
     }
 
+    /**
+     * JPA 사용한 데이터베이스 연결을 위한 EntityManagerFactory 설정하는 코드
+     * JDBC 배치 처리와는 직접적인 연관 x
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean dataEntityManager() {
 

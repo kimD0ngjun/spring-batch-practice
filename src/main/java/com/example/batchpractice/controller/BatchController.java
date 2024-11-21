@@ -1,5 +1,6 @@
 package com.example.batchpractice.controller;
 
+import com.example.batchpractice.repository.BeforeJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -22,6 +23,8 @@ public class BatchController {
     // job 실행을 위한 의존성들
     private final JobLauncher jobLauncher;
     private final JobRegistry jobRegistry;
+
+    private final BeforeJpaRepository beforeJpaRepository;
 
     /**
      * 컨트롤러 기반 배치 처리 실행 메소드
@@ -52,4 +55,11 @@ public class BatchController {
         jobLauncher.run(jobRegistry.getJob("secondJob"), jobParameters);
         return new ResponseEntity<>("second batch complete", HttpStatus.OK);
     }
+
+//    @GetMapping
+//    public ResponseEntity<?> test() {
+//        if (beforeJpaRepository.findById(1L).isPresent()) return new ResponseEntity<>("test OK", HttpStatus.OK);
+//
+//        throw new IllegalArgumentException();
+//    }
 }
