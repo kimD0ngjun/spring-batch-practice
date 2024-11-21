@@ -26,3 +26,15 @@ spring:
     jdbc-url: jdbc:mysql://localhost:3308/data_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: user
     password: password
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+    mongodb:
+      host: localhost
+      port: 27017
+      database: data_mongo
+      username: user
+      password: password
