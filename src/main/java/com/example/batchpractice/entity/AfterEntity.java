@@ -7,7 +7,7 @@ import lombok.Setter;
 /**
  * 옮기려는 데이터 도착 테이블
  */
-@Entity
+@Entity(name = "AfterEntity")
 @Getter
 @Setter
 public class AfterEntity {

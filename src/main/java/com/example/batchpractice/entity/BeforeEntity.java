@@ -7,7 +7,7 @@ import lombok.Setter;
 /**
  * 옮기려는 데이터 출발 테이블
  */
-@Entity
+@Entity(name = "BeforeEntity")
 @Getter
 @Setter
 public class BeforeEntity {
