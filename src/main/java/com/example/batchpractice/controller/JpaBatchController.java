@@ -36,7 +36,7 @@ public class JpaBatchController {
                 .addString("date", value)
                 .toJobParameters();
 
-        jobLauncher.run(jobRegistry.getJob("jdbcFirstBatchJob"), jobParameters);
+        jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
         return new ResponseEntity<>("first batch complete for JPA", HttpStatus.OK);
     }
 }

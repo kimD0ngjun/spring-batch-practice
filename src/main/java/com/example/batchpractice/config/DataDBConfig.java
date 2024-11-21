@@ -5,6 +5,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -53,13 +54,25 @@ public class DataDBConfig {
         return factoryBean;
     }
 
+    // JPA 트랜잭션 매니저 설정
     @Bean
     public PlatformTransactionManager dataTransactionManager() {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(dataEntityManager().getObject());
-//
-//        return transactionManager;
-        return new DataSourceTransactionManager(dataSource());  //  // JPA & JDBC 모두 DataSource 사용
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(dataEntityManager().getObject());
+
+        return transactionManager;
+    }
+
+    // JDBC 트랜잭션 매니저 설정 (JDBC 배치용)
+    @Bean
+    public PlatformTransactionManager jdbcTransactionManager() {
+        return new DataSourceTransactionManager(dataSource());  // JDBC 트랜잭션 관리
+    }
+
+    // JDBC 기반 JdbcTemplate 설정
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 
 }

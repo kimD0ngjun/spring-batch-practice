@@ -35,7 +35,7 @@ public class JdbcBatchController {
         // FirstBatch 클래스의 firstJob() 에서 지정한 작업 명칭
         // JobLauncher 에서 Job 실행시 JobParameter 를 주는 이유
         // : 실행한 작업에 대한 일자, 순번등을 부여해 동일한 일자에 대한 작업의 수행 여부를 확인하여 중복 실행 및 미실행을 예방
-        jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
+        jobLauncher.run(jobRegistry.getJob("jdbcFirstBatchJob"), jobParameters);
         return new ResponseEntity<>("first batch complete for JDBC", HttpStatus.OK);
     }
 
