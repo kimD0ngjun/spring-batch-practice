@@ -20,18 +20,21 @@ public class FirstSchedule {
     private final JobLauncher jobLauncher;
     private final JobRegistry jobRegistry;
 
-    @Scheduled(cron = "10 * * * * *", zone = "Asia/Seoul")  // 매 분 10초마다 해당 배치 실행
-    public void firstSchedule() throws Exception {
-        log.info("first schedule start");
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
-        String date = dateFormat.format(new Date());
-
-        JobParameters jobParameters = new JobParametersBuilder()
-                .addString("date", date)
-                .toJobParameters();
-
-        jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
-    }
+//    /**
+//     * 스케줄러 기반 배치 처리 실행 메소드
+//     */
+//    @Scheduled(cron = "10 * * * * *", zone = "Asia/Seoul")  // 매 분 10초마다 해당 배치 실행
+//    public void firstSchedule() throws Exception {
+//        log.info("first schedule start");
+//
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+//        String date = dateFormat.format(new Date());
+//
+//        JobParameters jobParameters = new JobParametersBuilder()
+//                .addString("date", date)
+//                .toJobParameters();
+//
+//        jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
+//    }
 
 }
