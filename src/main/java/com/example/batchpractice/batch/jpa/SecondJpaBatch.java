@@ -29,7 +29,7 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class SecondBatch {
+public class SecondJpaBatch {
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;

@@ -30,7 +30,7 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class FirstBatch {
+public class FirstJpaBatch {
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;

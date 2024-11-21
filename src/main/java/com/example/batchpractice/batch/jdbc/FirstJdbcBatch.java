@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class FirstBatch {
+public class FirstJdbcBatch {
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
