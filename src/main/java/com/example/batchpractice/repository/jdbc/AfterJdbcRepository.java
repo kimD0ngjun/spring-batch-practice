@@ -23,7 +23,7 @@ public class AfterJdbcRepository {
     }
 
     @Transactional
-    public void batchSave(List<AfterEntity> afterEntities) {
+    public void batchSave(List<? extends AfterEntity> afterEntities) {
         jdbcTemplate.batchUpdate(SQL, afterEntities, afterEntities.size(),
                 (ps, afterEntity) -> {
                     ps.setLong(1, afterEntity.getId());
