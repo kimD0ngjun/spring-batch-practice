@@ -1,5 +1,6 @@
 package com.example.batchpractice.performance;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
@@ -15,6 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
 @SpringBootTest
 public class JdbcJpaPerformanceTest {
 
@@ -95,9 +97,5 @@ public class JdbcJpaPerformanceTest {
         } else {
             System.out.println("JPA Batch 메모리 효율 더 좋음");
         }
-
-        // 비교 결과를 반환
-        ResponseEntity<String> response = new ResponseEntity<>("Batch performance comparison complete", HttpStatus.OK);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }
