@@ -33,6 +33,8 @@ public class FirstBatch {
 
     @Bean
     public Job jdbcBatchJob() {
+        log.info("JDBC: before 엔티티 테이블 -> after 엔티티 테이블 옮기기");
+
         return new JobBuilder("jdbcFirstBatchJob", jobRepository)
                 .start(jdbcBatchStep())
                 .build();
@@ -40,6 +42,8 @@ public class FirstBatch {
 
     @Bean
     public Step jdbcBatchStep() {
+        log.info("JDBC: 첫 번쨰 스탭");
+
         return new StepBuilder("jdbcFirstBatchStep", jobRepository)
                 .<BeforeEntity, AfterEntity>chunk(10, transactionManager)
                 .reader(jdbcReader())   // Reader

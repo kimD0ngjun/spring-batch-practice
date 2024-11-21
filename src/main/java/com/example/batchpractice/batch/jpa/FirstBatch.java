@@ -43,7 +43,7 @@ public class FirstBatch {
      */
     @Bean
     public Job firstJob() {
-        log.info("before 엔티티 테이블 -> after 엔티티 테이블 옮기기");
+        log.info("JPA: before 엔티티 테이블 -> after 엔티티 테이블 옮기기");
 
         return new JobBuilder("firstJob", jobRepository)  // 파라미터: 작업명 및 트래킹용 레포
                 .start(firstStep())  // 스탭 파라미터
@@ -58,7 +58,7 @@ public class FirstBatch {
      */
     @Bean
     public Step firstStep() {
-        log.info("첫 번쨰 스탭");
+        log.info("JPA: 첫 번쨰 스탭");
 
         return new StepBuilder("firstStep", jobRepository)
                 .<BeforeEntity, AfterEntity>chunk(10, transactionManager)
