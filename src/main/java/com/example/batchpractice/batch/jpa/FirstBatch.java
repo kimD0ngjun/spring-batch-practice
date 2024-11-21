@@ -2,8 +2,8 @@ package com.example.batchpractice.batch.jpa;
 
 import com.example.batchpractice.entity.AfterEntity;
 import com.example.batchpractice.entity.BeforeEntity;
-import com.example.batchpractice.repository.AfterRepository;
-import com.example.batchpractice.repository.BeforeRepository;
+import com.example.batchpractice.repository.AfterJpaRepository;
+import com.example.batchpractice.repository.BeforeJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -35,8 +35,8 @@ public class FirstBatch {
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
 
-    private final BeforeRepository beforeRepository;
-    private final AfterRepository afterRepository;
+    private final BeforeJpaRepository beforeJpaRepository;
+    private final AfterJpaRepository afterJpaRepository;
 
     /**
      * 하나의 배치 작업 단위
@@ -78,7 +78,7 @@ public class FirstBatch {
                 .name("beforeReader")
                 .pageSize(10)  // findAll 메소드의 페이징 처리
                 .methodName("findAll")
-                .repository(beforeRepository)
+                .repository(beforeJpaRepository)
                 .sorts(Map.of("id", Sort.Direction.ASC))  // 자원 낭비 방지용 sort
                 .build();
     }
@@ -104,7 +104,7 @@ public class FirstBatch {
     @Bean
     public RepositoryItemWriter<AfterEntity> afterWriter() {
         return new RepositoryItemWriterBuilder<AfterEntity>()
-                .repository(afterRepository)
+                .repository(afterJpaRepository)
                 .methodName("save")  // save 메소드
                 .build();
     }

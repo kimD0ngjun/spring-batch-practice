@@ -1,7 +1,7 @@
 package com.example.batchpractice.batch.jpa;
 
 import com.example.batchpractice.entity.WinEntity;
-import com.example.batchpractice.repository.WinRepository;
+import com.example.batchpractice.repository.WinJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -33,7 +33,7 @@ public class SecondBatch {
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
-    private final WinRepository winRepository;
+    private final WinJpaRepository winJpaRepository;
 
     @Bean
     public Job secondJob() {
@@ -70,7 +70,7 @@ public class SecondBatch {
                 .pageSize(10)
                 .methodName("findByWinGreaterThanEqual")
                 .arguments(Collections.singletonList(10L))  // WinEntity 의 win 필드가 10 이상인 데이터들 조회
-                .repository(winRepository)
+                .repository(winJpaRepository)
                 .sorts(Map.of("id", Sort.Direction.ASC))
                 .build();
     }
@@ -90,7 +90,7 @@ public class SecondBatch {
     public RepositoryItemWriter<WinEntity> winWriter() {
 
         return new RepositoryItemWriterBuilder<WinEntity>()
-                .repository(winRepository)
+                .repository(winJpaRepository)
                 .methodName("save")
                 .build();
     }

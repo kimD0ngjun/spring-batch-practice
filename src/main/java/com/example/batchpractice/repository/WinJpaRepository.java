@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WinRepository extends JpaRepository<WinEntity, Long> {
+public interface WinJpaRepository extends JpaRepository<WinEntity, Long> {
     Page<WinEntity> findByWinGreaterThanEqual(Long win, Pageable pageable);
 }
