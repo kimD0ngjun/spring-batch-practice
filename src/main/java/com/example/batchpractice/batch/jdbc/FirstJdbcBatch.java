@@ -57,16 +57,22 @@ public class FirstJdbcBatch {
     public ItemReader<BeforeEntity> jdbcReader() {
         return new ItemReader<>() {
             private int offset = 0; // 현재 오프셋
+            private List<BeforeEntity> entities; // 읽어온 엔티티 리스트
+            private int currentIndex = 0; // 현재 인덱스 (한 페이지에서 읽은 데이터 내 인덱스)
 
             @Override
             public BeforeEntity read() {
-                int pageSize = 10;
-                List<BeforeEntity> entities = beforeJdbcRepository.findAll(pageSize, offset);
-                if (entities.isEmpty()) {
-                    return null; // 더 이상 데이터가 없을 경우 null 반환 (Spring Batch 종료 조건)
+                // 한 번에 데이터를 읽어오고, 다음에 계속 처리할 수 있도록
+                if (entities == null || currentIndex >= entities.size()) {
+                    int pageSize = 10;
+                    entities = beforeJdbcRepository.findAll(pageSize, offset); // 새로운 페이지 데이터 읽기
+                    if (entities.isEmpty()) {
+                        return null; // 더 이상 데이터가 없을 경우 null 반환 (Spring Batch 종료 조건)
+                    }
+                    offset += pageSize; // offset 증가
+                    currentIndex = 0; // 인덱스를 처음으로 초기화
                 }
-                offset += pageSize;
-                return entities.getFirst(); // 한 번에 하나씩 반환
+                return entities.get(currentIndex++); // 하나씩 순차적으로 반환
             }
         };
     }

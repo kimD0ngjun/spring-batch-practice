@@ -4,6 +4,7 @@ import com.example.batchpractice.entity.BeforeEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class BeforeJdbcRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Transactional
     public List<BeforeEntity> findAll(int pageSize, int offset) {
         return jdbcTemplate.query(SQL,
                 (rs, rowNum) -> {
