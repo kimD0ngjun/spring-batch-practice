@@ -23,7 +23,7 @@ spring:
   # process data DB info
   datasource-data:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3308/data_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    jdbc-url: jdbc:mysql://localhost:3308/data_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&postfileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=999999
     username: user
     password: password
 
