@@ -2,6 +2,7 @@ package com.example.batchpractice.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Entity(name = "AfterEntity")
 @Getter
 @Setter
+@NoArgsConstructor
 public class AfterEntity {
 
     @Id
@@ -17,4 +19,8 @@ public class AfterEntity {
     private Long id;
 
     private String username;
+
+    public AfterEntity(String username) {
+        this.username = username;
+    }
 }
