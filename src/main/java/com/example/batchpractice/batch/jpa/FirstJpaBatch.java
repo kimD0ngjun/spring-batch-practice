@@ -61,7 +61,7 @@ public class FirstJpaBatch {
         log.info("JPA: 첫 번쨰 스탭");
 
         return new StepBuilder("firstStep", jobRepository)
-                .<BeforeEntity, AfterEntity>chunk(10, transactionManager)
+                .<BeforeEntity, AfterEntity>chunk(100, transactionManager)
                 .reader(beforeReader())  // 읽기 메소드 파라미터
                 .processor(middleProcessor())  // 처리 메소드 파라미터
                 .writer(afterWriter())  // 쓰기 메소드 파라미터
@@ -76,7 +76,7 @@ public class FirstJpaBatch {
     public RepositoryItemReader<BeforeEntity> beforeReader() {
         return new RepositoryItemReaderBuilder<BeforeEntity>()
                 .name("beforeReader")
-                .pageSize(10)  // findAll 메소드의 페이징 처리
+                .pageSize(100)  // findAll 메소드의 페이징 처리
                 .methodName("findAll")
                 .repository(beforeJpaRepository)
                 .sorts(Map.of("id", Sort.Direction.ASC))  // 자원 낭비 방지용 sort

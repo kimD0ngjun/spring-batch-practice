@@ -89,7 +89,8 @@ public class OrmBatchPerformanceTest {
 
     // 결론: JPA 기반 배치처리는 상당히 비효율적인듯?
     // 데이터를 10000개나 했는데...
-    @DisplayName("JPA 배치 처리 기반 실행시간 > ORM 기반 실행시간")
+    // 청크와 페이지 크기를 100으로 늘이니 통과된다
+    @DisplayName("JPA 배치 처리 기반 실행시간 < ORM 기반 실행시간")
     @Test
     public void test() throws Exception {
         long jpaMethodExecutionTime = executeOrmMethod();
@@ -104,7 +105,7 @@ public class OrmBatchPerformanceTest {
                         String.format(
                                 "ORM 메소드 실행시간: %d nanoseconds, JPA Batch 실행시간: %d nanoseconds",
                                 jpaMethodExecutionTime, jpaBatchExecutionTime))
-                .isLessThan(jpaBatchExecutionTime);
+                .isGreaterThan(jpaBatchExecutionTime);
     }
 
 }
