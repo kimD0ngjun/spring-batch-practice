@@ -2,6 +2,7 @@ package com.example.batchpractice.performance;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
@@ -46,6 +47,11 @@ public class JdbcJpaPerformanceTest {
         return endTime - startTime;
     }
 
+    @BeforeEach
+    public void setUp() {
+        jdbcTemplate.execute("TRUNCATE TABLE AfterEntity;");
+    }
+
     @AfterEach
     public void cleanup() {
         jdbcTemplate.execute("TRUNCATE TABLE AfterEntity;");
@@ -53,7 +59,7 @@ public class JdbcJpaPerformanceTest {
 
     @DisplayName("JDBC 기반 배치 처리 실행시간 < JPA 기반 배치 처리 실행시간")
     @Test
-    public void testBatchPerformanceComparison() throws Exception {
+    public void test() throws Exception {
         // given & when
         long jdbcBatchExecutionTime = executeBatchJob("jdbcFirstBatchJob");
 
@@ -63,8 +69,10 @@ public class JdbcJpaPerformanceTest {
 
         // then
         assertThat(jpaBatchExecutionTime)
-                .describedAs("JDBC Batch 실행시간: %d nanoseconds", jdbcBatchExecutionTime)
-                .describedAs("JPA Batch 실행시간: %d nanoseconds", jpaBatchExecutionTime)
+                .describedAs(
+                        String.format(
+                                "JDBC Batch 실행시간: %d nanoseconds, JPA Batch 실행시간: %d nanoseconds",
+                                jdbcBatchExecutionTime, jpaBatchExecutionTime))
                 .isGreaterThan(jdbcBatchExecutionTime);
 
     }
